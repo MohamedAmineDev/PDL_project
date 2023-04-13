@@ -21,8 +21,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
     private UserRole role;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
     private List<Commande> commandes;
