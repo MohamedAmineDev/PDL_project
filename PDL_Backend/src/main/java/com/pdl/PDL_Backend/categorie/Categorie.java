@@ -1,14 +1,13 @@
 package com.pdl.PDL_Backend.categorie;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.pdl.PDL_Backend.produit.Produit;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,4 +19,6 @@ public class Categorie implements Serializable {
     private Long id;
     private String label;
     private String imageLink;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categorie")
+    private List<Produit> produits;
 }

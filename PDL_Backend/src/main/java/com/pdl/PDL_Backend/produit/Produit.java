@@ -1,14 +1,15 @@
 package com.pdl.PDL_Backend.produit;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.pdl.PDL_Backend.categorie.Categorie;
+import com.pdl.PDL_Backend.commande_produit.CommandeProduit;
+import com.pdl.PDL_Backend.details_du_approvisionnement.DetailsDuApprovisionnement;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,4 +22,10 @@ public class Produit implements Serializable {
     private String label;
     private Double prix;
     private Long quantite;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Categorie categorie;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "produit")
+    private List<DetailsDuApprovisionnement> detailsDuApprovisionnements;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "produit")
+    private List<CommandeProduit> commandeProduits;
 }

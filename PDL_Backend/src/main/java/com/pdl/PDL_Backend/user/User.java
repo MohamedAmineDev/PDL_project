@@ -1,9 +1,7 @@
 package com.pdl.PDL_Backend.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.pdl.PDL_Backend.commande.Commande;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +24,8 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private UserRole role;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+    private List<Commande> commandes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

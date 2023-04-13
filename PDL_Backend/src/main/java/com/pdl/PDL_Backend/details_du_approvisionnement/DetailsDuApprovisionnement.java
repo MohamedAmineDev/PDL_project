@@ -1,6 +1,6 @@
-package com.pdl.PDL_Backend.commande_produit;
+package com.pdl.PDL_Backend.details_du_approvisionnement;
 
-import com.pdl.PDL_Backend.commande.Commande;
+import com.pdl.PDL_Backend.approvisionnement.Approvisionnement;
 import com.pdl.PDL_Backend.produit.Produit;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommandeProduit implements Serializable {
+public class DetailsDuApprovisionnement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -21,5 +21,5 @@ public class CommandeProduit implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Produit produit;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Commande commande;
+    private Approvisionnement approvisionnement;
 }
