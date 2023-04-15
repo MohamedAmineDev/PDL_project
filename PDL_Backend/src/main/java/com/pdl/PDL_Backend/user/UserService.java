@@ -22,7 +22,7 @@ public class UserService implements UserCrud {
         if (user == null) {
             throw new Exception("User is null !");
         }
-        user.setRole(UserRole.CLIENT_ROLE);
+        user.setRole("ROLE_CLIENT");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user) != null;
     }
@@ -44,14 +44,14 @@ public class UserService implements UserCrud {
         if (user == null) {
             throw new Exception("User is null !");
         }
-        user.setRole(UserRole.ADMIN_ROLE);
+        user.setRole("ROLE_ADMIN");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user) != null;
     }
 
     @Override
     public List<User> loadAllClients() throws Exception {
-        return userRepository.getAllUserGroupedByRole(UserRole.CLIENT_ROLE);
+        return userRepository.getAllUserGroupedByRole("ROLE_CLIENT");
     }
 
     @Override

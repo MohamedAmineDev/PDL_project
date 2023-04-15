@@ -1,5 +1,6 @@
 package com.pdl.PDL_Backend.categorie;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pdl.PDL_Backend.produit.Produit;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ public class Categorie implements Serializable {
     private Long id;
     private String label;
     private String imageLink;
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "categorie")
     private List<Produit> produits;
 }
