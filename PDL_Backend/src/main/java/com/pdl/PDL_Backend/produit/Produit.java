@@ -1,5 +1,6 @@
 package com.pdl.PDL_Backend.produit;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pdl.PDL_Backend.categorie.Categorie;
 import com.pdl.PDL_Backend.commande_produit.CommandeProduit;
 import com.pdl.PDL_Backend.details_du_approvisionnement.DetailsDuApprovisionnement;
@@ -22,6 +23,7 @@ public class Produit implements Serializable {
     private String label;
     private Double prix;
     private Long quantite;
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Categorie categorie;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "produit")
