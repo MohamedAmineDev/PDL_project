@@ -1,5 +1,6 @@
 package com.pdl.PDL_Backend.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pdl.PDL_Backend.commande.Commande;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,8 +22,11 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String nom;
+    private String prenom;
     @Column(nullable = false, unique = true)
     private String email;
+    //@JsonIgnore
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
@@ -44,17 +48,17 @@ public class User implements UserDetails {
     public String getUsername() {
         return email;
     }
-
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
