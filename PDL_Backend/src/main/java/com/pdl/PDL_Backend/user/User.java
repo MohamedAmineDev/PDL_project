@@ -1,6 +1,7 @@
 package com.pdl.PDL_Backend.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pdl.PDL_Backend.command.Command;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,6 +30,9 @@ public class User implements UserDetails {
     private String password;
     @Column(nullable = false)
     private String role;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+    private List<Command> commandList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
