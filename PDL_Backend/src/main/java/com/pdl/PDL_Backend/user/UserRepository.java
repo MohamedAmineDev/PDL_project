@@ -12,5 +12,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
     @Query("select u from User u  where u.role=:role")
-    List<User> getAllUserGroupedByRole(UserRole role);
+    List<User> getAllUserGroupedByRole(String role);
 }

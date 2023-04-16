@@ -1,9 +1,11 @@
 package com.pdl.PDL_Backend.security;
 
 import com.pdl.PDL_Backend.config.JwtAuthFilter;
+import com.pdl.PDL_Backend.user.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,8 +25,9 @@ public class SecurityConfiguration {
         http.csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/user_controller/register_client","/api/user_controller/login")
-                .permitAll()
+                .requestMatchers("/api/user_controller/register_client", "/api/user_controller/login", "/api/user_controller/register_admin").permitAll()
+                .requestMatchers("/api/categorie_controller/admin/**", "/api/produit_controller/admin/**").hasAnyRole("ADMIN")
+                .requestMatchers("/api/categorie_controller/categories", "/api/produit_controller/produits").hasAnyRole("CLIENT", "ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

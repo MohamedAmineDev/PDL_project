@@ -1,38 +1,84 @@
 package com.pdl.PDL_Backend.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/user_controller")
 @RequiredArgsConstructor
-public class UserController implements UserCrud {
+public class UserController implements IUserController {
     private final UserService userService;
 
     @PostMapping(path = "/register_client")
     @Override
-    public boolean registerAClient(@RequestBody User user) {
+    public ResponseEntity<?> registerAClient(@RequestBody User user) {
         try {
-            return userService.registerAClient(user);
+            boolean test = userService.registerAClient(user);
+            if (test) {
+                return new ResponseEntity<>(test, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(test, HttpStatus.BAD_REQUEST);
+            }
         } catch (Exception exception) {
-            exception.printStackTrace();
-            return false;
+            //exception.printStackTrace();
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PostMapping(path = "/login")
     @Override
-    public String login(@RequestBody User user) {
+    public ResponseEntity<?> login(@RequestBody User user) {
         try {
-            return userService.login(user);
+            return new ResponseEntity<>(userService.login(user), HttpStatus.OK);
+
         } catch (Exception exception) {
-            exception.printStackTrace();
-            return exception.getLocalizedMessage();
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.FORBIDDEN);
         }
     }
 
-    @GetMapping(path = "/hello")
-    public String hello() {
-        return "Hello everyone !\nHow are you ?";
+    @PostMapping(path = "/register_admin")
+    @Override
+    public ResponseEntity<?> registerAnAdmin(@RequestBody User user) {
+        try {
+            boolean test = userService.registerAnAdmin(user);
+            if (test) {
+                return new ResponseEntity<>(test, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(test, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception exception) {
+            //exception.printStackTrace();
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping(path = "/all_clients")
+    @Override
+    public ResponseEntity<List<User>> loadAllClients() {
+        try {
+            return new ResponseEntity<>(userService.loadAllClients(), HttpStatus.ACCEPTED);
+        } catch (Exception exception) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping(path = "/update_user/{id}/")
+    @Override
+    public ResponseEntity<?> updateAUser(@PathVariable("id") Long id, @RequestBody User user) {
+        try {
+            boolean test = userService.updateAUser(id, user);
+            if (test) {
+                return new ResponseEntity<>(test, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(test, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception exception) {
+            //exception.printStackTrace();
+            return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

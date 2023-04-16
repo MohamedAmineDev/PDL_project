@@ -1,5 +1,6 @@
 package com.pdl.PDL_Backend.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pdl.PDL_Backend.commande.Commande;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,18 +22,21 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String nom;
+    private String prenom;
     @Column(nullable = false, unique = true)
     private String email;
+    //@JsonIgnore
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private UserRole role;
+    private String role;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
     private List<Commande> commandes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
     @Override
@@ -45,16 +49,19 @@ public class User implements UserDetails {
         return email;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
+    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
