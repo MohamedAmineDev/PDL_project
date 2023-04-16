@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -55,7 +56,7 @@ public class UserService implements UserCrud {
     }
 
     @Override
-    public boolean updateAUser(Long id, User user) throws Exception {
+    public boolean updateAUser(UUID id, User user) throws Exception {
         if (user == null) {
             throw new Exception("User is null !");
         }

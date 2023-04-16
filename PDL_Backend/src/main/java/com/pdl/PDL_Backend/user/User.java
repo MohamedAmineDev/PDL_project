@@ -1,27 +1,25 @@
 package com.pdl.PDL_Backend.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pdl.PDL_Backend.commande.Commande;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String nom;
     private String prenom;
     @Column(nullable = false, unique = true)
@@ -31,8 +29,6 @@ public class User implements UserDetails {
     private String password;
     @Column(nullable = false)
     private String role;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
-    private List<Commande> commandes;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
