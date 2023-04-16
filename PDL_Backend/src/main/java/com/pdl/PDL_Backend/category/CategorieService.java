@@ -27,17 +27,14 @@ public class CategorieService implements ICategorie {
 
     @Override
     public String update(UUID id, Category category) throws Exception {
-        if (id.equals(null)) {
-            throw new Exception("The id is not valid !");
-        }
         Category found = categorieRepository.findById(id).orElseThrow(() -> new Exception("Category not found !"));
         if (category.getLabel() != null) {
-            if (category.getLabel().isEmpty() == false && category.getLabel().equals(found.getLabel()) == false) {
+            if (!category.getLabel().isEmpty() && !category.getLabel().equals(found.getLabel())) {
                 found.setLabel(category.getLabel());
             }
         }
         if (category.getImageLink() != null) {
-            if (category.getImageLink().isEmpty() == false && category.getImageLink().equals(found.getImageLink()) == false) {
+            if (!category.getImageLink().isEmpty() && !category.getImageLink().equals(found.getImageLink())) {
                 found.setImageLink(category.getImageLink());
             }
         }
@@ -47,9 +44,6 @@ public class CategorieService implements ICategorie {
 
     @Override
     public String delete(UUID id) throws Exception {
-        if (id.equals(null)) {
-            throw new Exception("The id is not valid !");
-        }
         Category category = categorieRepository.findById(id).orElseThrow(() -> new Exception("The category does not exist !"));
         categorieRepository.delete(category);
         return "true";
