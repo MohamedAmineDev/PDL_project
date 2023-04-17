@@ -1,6 +1,7 @@
 package com.pdl.PDL_Backend.command_product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pdl.PDL_Backend.command.Command;
 import com.pdl.PDL_Backend.product.Product;
 import jakarta.persistence.*;
@@ -26,4 +27,11 @@ public class CommandProduct implements Serializable {
     private Command command;
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
+
+    public CommandProduct(@JsonProperty("id") UUID id, @JsonProperty("quantity") Long quantity) {
+        this.id = id;
+        this.quantity = quantity;
+        command = new Command();
+        product = new Product();
+    }
 }

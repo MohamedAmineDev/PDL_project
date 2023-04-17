@@ -25,7 +25,10 @@ public class CommandService implements ICommand {
     @Override
     public List<Command> getAll() throws Exception {
         List<Command> commands = commandRepository.findAll();
-        return commands.stream().map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getUsername(), null, c.getClient().getRole(), new ArrayList<>()), new ArrayList<>())).toList();
+        return commands
+                .stream()
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .toList();
     }
 
     @Override
@@ -74,21 +77,33 @@ public class CommandService implements ICommand {
 
     @Override
     public List<Command> getAllCommandsThatAreWaitingForPayment() throws Exception {
-        return commandRepository.findByType(CommandType.WaitingForPayment).stream().map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getUsername(), null, c.getClient().getRole(), new ArrayList<>()), new ArrayList<>())).toList();
+        return commandRepository.findByType(CommandType.WaitingForPayment)
+                .stream()
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .toList();
     }
 
     @Override
     public List<Command> getAllCommandsThatArePayedWaitingForDelivery() throws Exception {
-        return commandRepository.findByType(CommandType.PayedButWaitingForDelivery).stream().map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), null, new ArrayList<>())).toList();
+        return commandRepository.findByType(CommandType.PayedButWaitingForDelivery)
+                .stream()
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .toList();
     }
 
     @Override
     public List<Command> getAllCommandsThatArePayedAndDelivered() throws Exception {
-        return commandRepository.findByType(CommandType.PayedAndDelivered).stream().map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getUsername(), null, c.getClient().getRole(), new ArrayList<>()), new ArrayList<>())).toList();
+        return commandRepository.findByType(CommandType.PayedAndDelivered)
+                .stream()
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .toList();
     }
 
     @Override
     public List<Command> getAllCommandsOfAUser(User user) throws Exception {
-        return commandRepository.findByUserEmail(user.getUsername()).stream().map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getUsername(), null, c.getClient().getRole(), new ArrayList<>()), new ArrayList<>())).toList();
+        return commandRepository.findByUserEmail(user.getUsername())
+                .stream()
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .toList();
     }
 }

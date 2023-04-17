@@ -17,7 +17,7 @@ public class ProductService implements IProduct {
 
     @Override
     public List<Product> getAll() throws Exception {
-        return productRepository.findAll().stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice(), null, new ArrayList<>())).toList();
+        return productRepository.findAll().stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice())).toList();
     }
 
     @Override
@@ -63,6 +63,6 @@ public class ProductService implements IProduct {
 
     @Override
     public List<Product> getAllTheProductsOfASpecificCategory(UUID categoryId) {
-        return productRepository.findByCategoryId(categoryId).stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice(), null, new ArrayList<>())).toList();
+        return productRepository.findByCategoryId(categoryId).stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice())).toList();
     }
 }

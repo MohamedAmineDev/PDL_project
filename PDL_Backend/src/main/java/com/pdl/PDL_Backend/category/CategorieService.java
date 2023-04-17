@@ -14,7 +14,7 @@ public class CategorieService implements ICategorie {
 
     @Override
     public List<Category> getAll() throws Exception {
-        return categorieRepository.findAll().stream().map(category -> new Category(category.getId(), category.getLabel(), category.getImageLink(), new ArrayList<>())).toList();
+        return categorieRepository.findAll().stream().map(category -> new Category(category.getId(), category.getLabel(), category.getImageLink())).toList();
     }
 
     @Override

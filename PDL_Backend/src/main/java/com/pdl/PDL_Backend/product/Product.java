@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,4 +32,12 @@ public class Product implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private List<CommandProduct> commandProducts;
 
+    public Product(@JsonProperty("id") UUID id, @JsonProperty("label") String label, @JsonProperty("quantity") Long quantity, @JsonProperty("price") Double price) {
+        this.id = id;
+        this.label = label;
+        this.quantity = quantity;
+        this.price = price;
+        category = new Category();
+        commandProducts = new ArrayList<>();
+    }
 }

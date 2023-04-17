@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,4 +24,11 @@ public class Category implements Serializable {
     private String imageLink;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Product> productList;
+
+    public Category(UUID id, String label, String imageLink) {
+        this.id = id;
+        this.label = label;
+        this.imageLink = imageLink;
+        productList = new ArrayList<>();
+    }
 }
