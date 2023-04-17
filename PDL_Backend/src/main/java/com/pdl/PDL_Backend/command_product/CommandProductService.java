@@ -17,7 +17,7 @@ public class CommandProductService implements ICommandProduct {
     @Override
     public List<CommandProduct> getAComandDetails(UUID id) throws Exception {
         return commandProductRepository.getDetails(id).stream()
-                .map(commandProduct -> new CommandProduct(commandProduct.getId(), commandProduct.getQuantity(), new Command(), new Product(commandProduct.getProduct().getId(), commandProduct.getProduct().getLabel(), commandProduct.getProduct().getQuantity(), commandProduct.getProduct().getPrice(), null, new ArrayList<>())))
+                .map(commandProduct -> new CommandProduct(commandProduct.getId(), commandProduct.getQuantity(), new Command(), new Product(commandProduct.getProduct().getId(), commandProduct.getProduct().getLabel(), commandProduct.getProduct().getQuantity(), commandProduct.getProduct().getPrice())))
                 .toList()
                 ;
     }

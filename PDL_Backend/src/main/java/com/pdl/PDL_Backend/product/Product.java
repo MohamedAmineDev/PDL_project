@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pdl.PDL_Backend.category.Category;
 import com.pdl.PDL_Backend.command_product.CommandProduct;
+import com.pdl.PDL_Backend.supply_product.SupplyProduct;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +32,8 @@ public class Product implements Serializable {
     private Category category;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private List<CommandProduct> commandProducts;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
+    private List<SupplyProduct> supplyProducts;
 
     public Product(@JsonProperty("id") UUID id, @JsonProperty("label") String label, @JsonProperty("quantity") Long quantity, @JsonProperty("price") Double price) {
         this.id = id;
@@ -39,5 +42,6 @@ public class Product implements Serializable {
         this.price = price;
         category = new Category();
         commandProducts = new ArrayList<>();
+        supplyProducts = new ArrayList<>();
     }
 }
