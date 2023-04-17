@@ -28,7 +28,6 @@ public class Product implements Serializable {
     private Double price;
     @ManyToOne
     private Category category;
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private List<CommandProduct> commandProducts;
 

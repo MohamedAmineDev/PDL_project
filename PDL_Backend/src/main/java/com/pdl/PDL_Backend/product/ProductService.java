@@ -5,6 +5,7 @@ import com.pdl.PDL_Backend.category.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ public class ProductService implements IProduct {
 
     @Override
     public List<Product> getAll() throws Exception {
-        return productRepository.findAll();
+        return productRepository.findAll().stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice(), null, new ArrayList<>())).toList();
     }
 
     @Override
@@ -62,6 +63,6 @@ public class ProductService implements IProduct {
 
     @Override
     public List<Product> getAllTheProductsOfASpecificCategory(UUID categoryId) {
-        return productRepository.findByCategoryId(categoryId);
+        return productRepository.findByCategoryId(categoryId).stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice(), null, new ArrayList<>())).toList();
     }
 }

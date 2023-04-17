@@ -52,7 +52,7 @@ public class UserService implements UserCrud {
 
     @Override
     public List<User> loadAllClients() throws Exception {
-        return userRepository.getAllUserGroupedByRole("ROLE_CLIENT");
+        return userRepository.getAllUserGroupedByRole("ROLE_CLIENT").stream().map(u -> new User(u.getId(), u.getNom(), u.getPrenom(), u.getUsername(), null, u.getRole(), null)).toList();
     }
 
     @Override

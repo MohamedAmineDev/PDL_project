@@ -21,7 +21,6 @@ public class Category implements Serializable {
     private UUID id;
     private String label;
     private String imageLink;
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Product> productList;
 }

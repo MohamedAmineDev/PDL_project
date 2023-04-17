@@ -30,7 +30,6 @@ public class User implements UserDetails {
     private String password;
     @Column(nullable = false)
     private String role;
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
     private List<Command> commandList;
 

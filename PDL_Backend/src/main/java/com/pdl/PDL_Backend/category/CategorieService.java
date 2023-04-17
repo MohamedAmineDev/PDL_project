@@ -3,6 +3,7 @@ package com.pdl.PDL_Backend.category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ public class CategorieService implements ICategorie {
 
     @Override
     public List<Category> getAll() throws Exception {
-        return categorieRepository.findAll();
+        return categorieRepository.findAll().stream().map(category -> new Category(category.getId(), category.getLabel(), category.getImageLink(), new ArrayList<>())).toList();
     }
 
     @Override
