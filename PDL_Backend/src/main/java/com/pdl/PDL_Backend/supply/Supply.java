@@ -1,5 +1,6 @@
 package com.pdl.PDL_Backend.supply;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pdl.PDL_Backend.supply_product.SupplyProduct;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,4 +26,10 @@ public class Supply implements Serializable {
     private LocalDateTime interventionDate;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "supply")
     private List<SupplyProduct> supplyProductList;
+
+    public Supply(@JsonProperty("id") UUID id, @JsonProperty("interventionDate") LocalDateTime interventionDate) {
+        this.id = id;
+        this.interventionDate = interventionDate;
+        supplyProductList = new ArrayList<>();
+    }
 }
