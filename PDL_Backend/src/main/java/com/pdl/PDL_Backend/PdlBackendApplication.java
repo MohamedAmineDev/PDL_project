@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class PdlBackendApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(PdlBackendApplication.class, args);
-	}
+    //TODO Create unit tests for each controller
+    public static void main(String[] args) {
+        SpringApplication.run(PdlBackendApplication.class, args);
+    }
 
 }

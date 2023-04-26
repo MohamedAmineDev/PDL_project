@@ -1,6 +1,7 @@
 package com.pdl.PDL_Backend.user;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UserCrud {
     boolean registerAClient(User user) throws Exception;
@@ -11,5 +12,5 @@ public interface UserCrud {
 
     List<User> loadAllClients() throws Exception;
 
-    boolean updateAUser(Long id, User user) throws Exception;
+    boolean updateAUser(UUID id, User user) throws Exception;
 }

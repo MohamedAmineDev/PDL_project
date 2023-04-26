@@ -6,9 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/api/user_controller")
+@RequestMapping(path = "/api/user")
 @RequiredArgsConstructor
 public class UserController implements IUserController {
     private final UserService userService;
@@ -56,7 +57,7 @@ public class UserController implements IUserController {
         }
     }
 
-    @GetMapping(path = "/all_clients")
+    @GetMapping(path = "/clients")
     @Override
     public ResponseEntity<List<User>> loadAllClients() {
         try {
@@ -68,7 +69,7 @@ public class UserController implements IUserController {
 
     @PutMapping(path = "/update_user/{id}/")
     @Override
-    public ResponseEntity<?> updateAUser(@PathVariable("id") Long id, @RequestBody User user) {
+    public ResponseEntity<?> updateAUser(@PathVariable("id") UUID id, @RequestBody User user) {
         try {
             boolean test = userService.updateAUser(id, user);
             if (test) {
