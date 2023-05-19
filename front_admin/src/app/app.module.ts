@@ -12,6 +12,7 @@ import { CategoryComponent } from './category/category.component';
 import { ProductComponent } from './product/product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     LoginComponent,
     CategoryComponent,
-    ProductComponent
+    ProductComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,

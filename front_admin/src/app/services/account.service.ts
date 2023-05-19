@@ -22,18 +22,23 @@ export class AccountService {
     });
   }
   getCurrentUser() {
-    let token: any = sessionStorage.getItem(this.sessionTokenName);
-    let decoder = new JwtHelperService();
-    let decodedToken = decoder.decodeToken(token);
+    let token: any = sessionStorage.getItem(this.sessionTokenName) || null;
     let currentUser: CurrentUser = {} as CurrentUser;
-    currentUser.email = decodedToken.sub;
-    currentUser.firstName = decodedToken.prenom;
-    currentUser.lastName = decodedToken.nom;
-    currentUser.role = decodedToken.role;
+    if (token != null) {
+      let decoder = new JwtHelperService();
+      let decodedToken = decoder.decodeToken(token);
+      currentUser.email = decodedToken.sub;
+      currentUser.firstName = decodedToken.prenom;
+      currentUser.lastName = decodedToken.nom;
+      currentUser.role = decodedToken.role;
+    }
     return currentUser;
     //let user=decoder.getAuthScheme();
   }
-  isAuthenticated(){
-    return sessionStorage.getItem(this.sessionTokenName)!=undefined;
+  isAuthenticated() {
+    return sessionStorage.getItem(this.sessionTokenName) != undefined;
+  }
+  getToken(){
+    return sessionStorage.getItem(this.sessionTokenName);
   }
 }
