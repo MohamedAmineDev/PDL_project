@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="flex flex-wrap">
+    <div class="w-4/12 flex-1">
+      <app-dashboard></app-dashboard>
+    </div>
+    <div class="w-8/12 mt-10">
+      <div class="flex flex-wrap mb-10">
+        <div class="w-6/12 flex-1">
+          <div
+            class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+            <h5 class="text-xl font-medium text-gray-900 dark:text-white text-center mb-5">{{produits.length}} Articles
+            </h5>
+            <a href="/produits"><button type="button"
+                class=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{btnInfo}}</button></a>
+          </div>
+        </div>
+        <div class="w-6/12">
+          <div
+            class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-blue-800 dark:border-blue-700">
+            <h5 class="text-xl font-medium text-gray-900 dark:text-white text-center mb-5">{{clients.length}} Clients
+            </h5>
+            <a href="/clients"><button type="button"
+                class=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{btnInfo}}</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-wrap">
+        <div class="w-6/12 flex-1">
+          <div
+            class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-green-800 dark:border-green-700">
+            <h5 class="text-xl font-medium text-gray-900 dark:text-white text-center mb-5">{{fournisseurs.length}}
+              Supplies</h5>
+            <a href="/fournisseurs"><button type="button"
+                class=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{btnInfo}}</button></a>
+          </div>
+        </div>
+        <div class="w-6/12">
+          <div
+            class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 md:p-8 dark:bg-orange-800 dark:border-or-700">
+            <h5 class="text-xl font-medium text-gray-900 dark:text-white text-center mb-5">{{commandes.length}}
+              Commandes</h5>
+            <a href="/commandes"><button type="button"
+                class=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{btnInfo}}</button></a>
+          </div>
+        </div>
+      </div>
+      <!--  <div class="flex flex-wrap">
+          <div class="w-4/12 flex-1">
+  
+          </div>
+          <div class="w-8/12">
+  
+          </div>
+        </div>
+        !-->
+    </div>
+  </div>
+</div>
