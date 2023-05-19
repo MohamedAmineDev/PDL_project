@@ -37,7 +37,7 @@ public class UserService implements UserCrud {
                 new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
         );
         var foundUser = userRepository.findByEmail(user.getEmail()).orElseThrow();
-        return jwtService.generateToken(user);
+        return jwtService.generateToken(foundUser);
     }
 
     @Override

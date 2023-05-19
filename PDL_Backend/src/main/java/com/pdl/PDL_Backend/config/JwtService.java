@@ -1,5 +1,6 @@
 package com.pdl.PDL_Backend.config;
 
+import com.pdl.PDL_Backend.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
+
 @Service
 public class JwtService {
     private static final String SECRET_KEY = "357638792F423F4528482B4D6250655368566D597133743677397A2443264629";
@@ -30,8 +32,17 @@ public class JwtService {
                 .getBody();
     }
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+    private HashMap<String, Object> generateMyClaims(User user) {
+        HashMap<String, Object> claims = new HashMap<>();
+        claims.put("nom", user.getNom());
+        claims.put("prenom", user.getPrenom());
+        claims.put("role", user.getRole());
+        claims.put("email", user.getEmail());
+        return claims;
+    }
+
+    public String generateToken(User userDetails) {
+        return generateToken(generateMyClaims(userDetails), userDetails);
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
@@ -47,10 +58,11 @@ public class JwtService {
         return extractClaim(token, Claims::getExpiration);
     }
 
-    public String generateToken(Map<String, Object> claims, UserDetails userDetails) {
+    public String generateToken(Map<String, Object> claims, User userDetails) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
+                //.setSubject(userDetails.getUsername() + "|" + userDetails.getNom() + "|" + userDetails.getPrenom() + "|" + userDetails.getRole())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 168))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)

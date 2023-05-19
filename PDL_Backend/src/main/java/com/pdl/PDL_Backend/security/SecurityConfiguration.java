@@ -24,6 +24,8 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
                 .disable()
+                .cors()
+                .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/api/user/register_client", "/api/user/login", "/api/user/register_admin").permitAll()
                 .requestMatchers("/api/category/admin/**", "/api/product/admin/**", "/api/command/admin/**", "/api/supply/admin/**", "/api/supply_product/**").hasAnyRole("ADMIN")
@@ -41,4 +43,5 @@ public class SecurityConfiguration {
         return http.build();
 
     }
+
 }
