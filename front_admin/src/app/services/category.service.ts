@@ -7,24 +7,33 @@ import { Category } from '../models/Category';
   providedIn: 'root'
 })
 export class CategoryService {
-private url="http://localhost:8090/api/category";
-  constructor(private http:HttpClient,private user:AccountService) { }
-  getAllCategories(){
+  private url = "http://localhost:8090/api/category";
+  constructor(private http: HttpClient, private user: AccountService) { }
+  getAllCategories() {
     const head = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + this.user.getToken(),
       }),
     };
-    return this.http.get<Array<Category>>(`${this.url}/categories`,head);
+    return this.http.get<Array<Category>>(`${this.url}/categories`, head);
   }
-  registerCategory(category:Category){
+  registerCategory(category: Category) {
     const head = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + this.user.getToken(),
       }),
     };
-    return this.http.post(`${this.url}/admin/addition`,category,head);
+    return this.http.post(`${this.url}/admin/addition`, category, head);
+  }
+  deleteCategory(id:string) {
+    const head = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.user.getToken(),
+      }),
+    };
+    return this.http.delete(`${this.url}/admin/delete/${id}`, head);
   }
 }

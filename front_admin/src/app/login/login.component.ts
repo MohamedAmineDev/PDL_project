@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.accountService.registerToken(data);
         alert("Login is a success !");
         console.log(this.accountService.getCurrentUser());
-        //window.location.href = "/home";
+        window.location.href = "/home";
       },
       (e) => {
         console.log(e);

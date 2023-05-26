@@ -15,10 +15,11 @@ export class AddCategoryComponent implements OnInit {
   }
   addFournisseur() {
     this.categoryService.registerCategory(this.form).subscribe(
-      (data)=>{
+      (data) => {
         console.log(data);
+        window.location.href = "/manage_categories";
       },
-      (e)=>{
+      (e) => {
         console.log(e);
       }
     );
@@ -42,7 +43,7 @@ export class AddCategoryComponent implements OnInit {
   buttonText: string = "Add";
   alertIsDisplayed: boolean = false;
 
-  constructor(private categoryService:CategoryService) { }
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
   }
