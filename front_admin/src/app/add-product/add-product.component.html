@@ -1,0 +1,136 @@
+<ng-container *ngIf="showModal">
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed w-full top-0">
+        <div class="relative w-full h-full max-w-md md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700" style="overflow: auto">
+                <button type="button"
+                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+                    data-modal-hide="authentication-modal" (click)="closeAlert()">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="px-6 py-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white text-center font-bold">
+                        Add Product
+                    </h3>
+                    <div class="forms-container">
+                        <form class="simple-form" (ngSubmit)="addFournisseur()" method="POST">
+                            <div class="input-groups">
+                                <div>
+                                    <label for="label" class="label-form-modal">Label</label>
+                                    <input id="label" name="label" type="text" autocomplete="label" required
+                                        class="input-form" placeholder="Label" [(ngModel)]="form.label"
+                                        #label="ngModel" />
+                                    <div *ngIf="InputIsNotValid(label)" class="input-error-modal">
+                                        <p>Label is required !!!!</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="imageLink" class="label-form-modal">Image Link</label>
+                                    <input id="imageLink" name="imageLink" type="text" autocomplete="imageLink" required
+                                        class="input-form" placeholder="imageLink" [(ngModel)]="form.imageLink"
+                                        #imageLink="ngModel" />
+                                    <div *ngIf="emailIsNotValid(imageLink)" class="input-error-modal">
+                                        <p>Image Link is required !!!!</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="quantity" class="label-form-modal">Quantity</label>
+                                    <input id="quantity" name="quantity" type="text" autocomplete="quantity" required
+                                        class="input-form" placeholder="quantity" [(ngModel)]="form.quantity"
+                                        #quantity="ngModel" />
+                                    <div *ngIf="emailIsNotValid(quantity)" class="input-error-modal">
+                                        <p>Quantity is required !!!!</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="price" class="label-form-modal">Price</label>
+                                    <input id="price" name="price" type="text" autocomplete="price" required
+                                        class="input-form" placeholder="price" [(ngModel)]="form.price"
+                                        #price="ngModel" />
+                                    <div *ngIf="emailIsNotValid(price)" class="input-error-modal">
+                                        <p>Price is required !!!!</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="categoryId" class="label-form-modal"
+                                      >Category</label
+                                    >
+                                    <select
+                                      [(ngModel)]="form.categoryId"
+                                      #categoryId
+                                      name="categoryId"
+                                    >
+                                      <option
+                                        *ngFor="let item of categories; let i = index"
+                                        [ngValue]="item.id"
+                                      >
+                                        {{ item.label }}
+                                      </option>
+                                    </select>
+                                  </div>
+                            </div>
+                            <!--Second part of the form-->
+                            <div>
+                                <button type="submit" [disabled]="
+                      isNotValide(label, imageLink)
+                    " class="submit-form">
+                                    {{ buttonText }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------->
+    <ng-container *ngIf="alertIsDisplayed">
+        <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+            <div class="fixed z-10 inset-0 overflow-y-auto">
+                <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                    <div
+                        class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
+                        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div class="sm:flex sm:items-start">
+                                <div
+                                    class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                    <!-- Heroicon name: outline/exclamation -->
+                                    <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                </div>
+                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                        Alerte !
+                                    </h3>
+                                    <div class="mt-2">
+                                        <p class="text-sm text-gray-500">
+                                            L'ajout du fournisseur a échoué !
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                            <button type="button"
+                                class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                                (click)="closeAlert()">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

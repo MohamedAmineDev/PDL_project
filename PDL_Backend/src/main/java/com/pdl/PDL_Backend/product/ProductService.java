@@ -39,15 +39,12 @@ public class ProductService implements IProduct {
                 found.setLabel(product.getLabel());
             }
         }
-        if (product.getQuantity() != null) {
-            if (product.getQuantity() < 1 && !product.getQuantity().equals(found.getQuantity())) {
-                found.setQuantity(product.getQuantity());
-            }
+
+        if (product.getQuantity() < 1 && !product.getQuantity().equals(found.getQuantity())) {
+            found.setQuantity(product.getQuantity());
         }
-        if (product.getPrice() != null) {
-            if (product.getPrice() < 1 && !product.getPrice().equals(found.getPrice())) {
-                found.setPrice(product.getPrice());
-            }
+        if (product.getPrice() < 1 && !product.getPrice().equals(found.getPrice())) {
+            found.setPrice(product.getPrice());
         }
         productRepository.saveAndFlush(found);
         return "true";
