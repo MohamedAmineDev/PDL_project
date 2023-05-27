@@ -13,6 +13,7 @@ import { ProductComponent } from './product/product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AddCategoryComponent } from './add-category/add-category.component';
+import { UpdateCategoryComponent } from './update-category/update-category.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddCategoryComponent } from './add-category/add-category.component';
     LoginComponent,
     CategoryComponent,
     ProductComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    UpdateCategoryComponent
   ],
   imports: [
     BrowserModule,

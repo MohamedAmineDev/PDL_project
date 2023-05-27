@@ -239,6 +239,7 @@
             [fournisseurToUpdate]="wantedFournisseur"
           ></app-update-fournisseur>
           -->
+          <app-update-category [showModal]="updatingFormDisplayed" [categoryToUpdate]="wantedCategory" ></app-update-category>
         </ng-container>
         <ng-container *ngIf="askingToDelete == true">
           <div

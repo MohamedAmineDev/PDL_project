@@ -36,4 +36,13 @@ export class CategoryService {
     };
     return this.http.delete(`${this.url}/admin/delete/${id}`, head);
   }
+  updateCategory(category: Category) {
+    const head = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.user.getToken(),
+      }),
+    };
+    return this.http.put(`${this.url}/admin/update/${category.id}`, category,head);
+  }
 }

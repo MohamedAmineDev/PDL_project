@@ -14,7 +14,7 @@ export class CategoryComponent implements OnInit {
   showErreur: any;
   addingFormDisplayed: any;
   updatingFormDisplayed: any;
-  wantedFournisseur: any;
+  wantedCategory: any;
   askingToDelete: any;
   id: string = "";
   constructor(private categoryService: CategoryService) { }
@@ -35,7 +35,8 @@ export class CategoryComponent implements OnInit {
     );
   }
   startUpdating(_t22: number) {
-    throw new Error('Method not implemented.');
+    this.wantedCategory=this.fournisseurs[_t22];
+    this.updatingFormDisplayed=true;
   }
   prepareBeforeDelete(_t22: any) {
     this.askingToDelete = true;
@@ -44,6 +45,7 @@ export class CategoryComponent implements OnInit {
 
   closeLoading() {
     this.addingFormDisplayed = false;
+    window.location.href = '/';
   }
 
   addFormConfiguration() {
