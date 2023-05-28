@@ -17,7 +17,7 @@ export class AddProductComponent implements OnInit {
     window.location.href = "/manage_products";
   }
   addFournisseur() {
-    let product=new Product(null,this.form.label,this.form.quantity,this.form.price,this.form.imageLink,this.form.categoryId);
+    let product=new Product(null,this.form.label,this.form.quantity,this.form.price,this.form.categoryId,this.form.imageLink);
     console.log(product);
     this.productService.registerProduct(product).subscribe(
       (data) => {

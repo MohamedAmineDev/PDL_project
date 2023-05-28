@@ -28,6 +28,7 @@ public class Product implements Serializable {
     private String label;
     private Long quantity;
     private Double price;
+    private String imageLink;
     @ManyToOne
     private Category category;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
@@ -35,7 +36,7 @@ public class Product implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     private List<SupplyProduct> supplyProducts;
 
-    public Product(@JsonProperty("id") UUID id, @JsonProperty("label") String label, @JsonProperty("quantity") Long quantity, @JsonProperty("price") Double price) {
+    public Product(@JsonProperty("id") UUID id, @JsonProperty("label") String label, @JsonProperty("quantity") Long quantity, @JsonProperty("price") Double price,@JsonProperty("imageLink") String imageLink) {
         this.id = id;
         this.label = label;
         this.quantity = quantity;
@@ -43,5 +44,6 @@ public class Product implements Serializable {
         category = new Category();
         commandProducts = new ArrayList<>();
         supplyProducts = new ArrayList<>();
+        this.imageLink=imageLink;
     }
 }

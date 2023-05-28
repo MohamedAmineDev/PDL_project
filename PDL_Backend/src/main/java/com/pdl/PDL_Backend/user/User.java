@@ -34,14 +34,16 @@ public class User implements UserDetails {
     private String role;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
     private List<Command> commandList;
+    private boolean isUnlocked;
 
-    public User(@JsonProperty("id") UUID id, @JsonProperty("nom") String nom, @JsonProperty("prenom") String prenom, @JsonProperty("email") String email, @JsonProperty("role") String role) {
+    public User(@JsonProperty("id") UUID id, @JsonProperty("nom") String nom, @JsonProperty("prenom") String prenom, @JsonProperty("email") String email, @JsonProperty("role") String role,@JsonProperty("isUnlocked") boolean isUnlocked) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.role = role;
         commandList = new ArrayList<>();
+        this.isUnlocked=isUnlocked;
     }
 
     @Override

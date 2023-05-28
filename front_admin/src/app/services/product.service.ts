@@ -25,7 +25,15 @@ export class ProductService {
         Authorization: 'Bearer ' + this.user.getToken(),
       }),
     };
-    return this.http.post(`${this.url}/admin/addition`, product, head);
+    const p={
+      id:product.id,
+      label:product.label,
+      quantity: parseInt(product.quantity+""),
+      category:product.category,
+      price:parseFloat(product.price+""),
+      imageLink:product.imageLink
+    }
+    return this.http.post(`${this.url}/admin/addition`, p, head);
   }
   deleteProduct(id:string) {
     const head = {
@@ -47,13 +55,14 @@ export class ProductService {
     let quantity:number=product.quantity+0;
     const p={
       label:product.label,
-      price:price,
-      quantity:quantity,
+      price:parseFloat(product.price+""),
+      quantity:parseInt(product.quantity+""),
       id:product.id,
-      category:{id:product.categoryId}
+      category:{id:product.categoryId},
+      imageLink:product.imageLink
     };
-    console.log("#!!!!!!!!!!!!!!");
-    console.log(p);
+    //console.log("#!!!!!!!!!!!!!!");
+    //console.log(p);
     return this.http.put(`${this.url}/admin/update/${product.id}`, p,head);
   }
 }

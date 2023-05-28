@@ -17,7 +17,7 @@ public class ProductService implements IProduct {
 
     @Override
     public List<Product> getAll() throws Exception {
-        return productRepository.findAll().stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice())).toList();
+        return productRepository.findAll().stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice(), product.getImageLink())).toList();
     }
 
     @Override
@@ -40,11 +40,14 @@ public class ProductService implements IProduct {
             }
         }
 
-        if (product.getQuantity() < 1 && !product.getQuantity().equals(found.getQuantity())) {
+        if (product.getQuantity() > 1 && !product.getQuantity().equals(found.getQuantity())) {
             found.setQuantity(product.getQuantity());
         }
-        if (product.getPrice() < 1 && !product.getPrice().equals(found.getPrice())) {
+        if (product.getPrice() > 1 && !product.getPrice().equals(found.getPrice())) {
             found.setPrice(product.getPrice());
+        }
+        if (product.getImageLink() != null || product.getImageLink()!="") {
+            found.setImageLink(product.getImageLink());
         }
         productRepository.saveAndFlush(found);
         return "true";
@@ -60,6 +63,6 @@ public class ProductService implements IProduct {
 
     @Override
     public List<Product> getAllTheProductsOfASpecificCategory(UUID categoryId) {
-        return productRepository.findByCategoryId(categoryId).stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice())).toList();
+        return productRepository.findByCategoryId(categoryId).stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice(), product.getImageLink())).toList();
     }
 }

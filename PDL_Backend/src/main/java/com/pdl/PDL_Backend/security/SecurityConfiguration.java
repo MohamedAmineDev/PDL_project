@@ -28,7 +28,7 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/api/user/register_client", "/api/user/login", "/api/user/register_admin").permitAll()
-                .requestMatchers("/api/category/admin/**", "/api/product/admin/**", "/api/command/admin/**", "/api/supply/admin/**", "/api/supply_product/**").hasAnyRole("ADMIN")
+                .requestMatchers("/api/category/admin/**", "/api/product/admin/**", "/api/command/admin/**", "/api/supply/admin/**", "/api/supply_product/**","/api/user/clients","/api/user/admin/unlock_user","/api/user/admin/lock_user").hasAnyRole("ADMIN")
                 .requestMatchers("/api/command/client/**").hasAnyRole("CLIENT")
                 .requestMatchers("/api/category/categories", "/api/product/products", "/api/product/products/**", "/api/command/commands", "/api/command_product/**").hasAnyRole("CLIENT", "ADMIN")
                 .anyRequest()

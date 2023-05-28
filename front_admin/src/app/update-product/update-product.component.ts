@@ -11,14 +11,24 @@ import { ProductService } from '../services/product.service';
 })
 export class UpdateProductComponent implements OnInit {
   @Input() showModal: boolean = {} as boolean;
-  @Input() productToUpdate: FormProduct = {} as FormProduct;
+  @Input() productToUpdate: Product = {} as Product;
   categories:Array<Category>=[]
   closeAlert() {
     this.showModal = false;
     window.location.href = "/manage_products";
   }
   addFournisseur() {
-    console.log(this.form);
+    let product=new Product(this.form.id,this.form.label,this.form.quantity,this.form.price,this.form.categoryId,this.form.imageLink);
+    console.log(product);
+    this.productService.updateProduct(product).subscribe(
+      (data) => {
+        console.log(data);
+        window.location.href = "/manage_products";
+      },
+      (e) => {
+        console.log(e);
+      }
+    );
   }
   form: FormProduct = {} as FormProduct;
   InputIsNotValid(name: any): any {
@@ -40,7 +50,6 @@ export class UpdateProductComponent implements OnInit {
   alertIsDisplayed: boolean = false;
 
   constructor(private categoryService: CategoryService ,private productService:ProductService) {
-    //this.form=this.productToUpdate;
     this.categoryService.getAllCategories().subscribe(
       (data) => {
         console.log(data);
@@ -57,7 +66,10 @@ export class UpdateProductComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.form=this.productToUpdate;
-    console.log(this.productToUpdate);
+    this.form.id=this.productToUpdate.id;
+    this.form.label=this.productToUpdate.label;
+    this.form.quantity=this.productToUpdate.quantity;
+    this.form.price=this.productToUpdate.price;
+    this.form.imageLink=this.productToUpdate.imageLink;
   }
 }

@@ -14,7 +14,7 @@ export class ProductsComponent implements OnInit {
   showErreur: any;
   addingFormDisplayed: any;
   updatingFormDisplayed: any;
-  wantedCategory: FormProduct={} as FormProduct;
+  wantedCategory:any;
   askingToDelete: any;
   id: string = "";
   constructor(private productService: ProductService) { }
@@ -36,7 +36,7 @@ export class ProductsComponent implements OnInit {
   }
   startUpdating(_t22: number) {
     let p=this.fournisseurs[_t22];
-    this.wantedCategory=new Product(p.id,p.label,p.quantity,p.price,p.imageLink,p.category.id);
+    this.wantedCategory=new Product(p.id,p.label,p.quantity,p.price,p.category.id,p.imageLink);
     console.log(this.wantedCategory);
     this.updatingFormDisplayed=true;
   }
