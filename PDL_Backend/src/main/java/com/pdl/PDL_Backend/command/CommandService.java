@@ -35,6 +35,7 @@ public class CommandService implements ICommand {
     public String add(Command command, boolean payed, User user) throws Exception {
         List<Product> productList = new ArrayList<>();
         List<CommandProduct> commandProductList = new ArrayList<>();
+        double totalPrice=0;
         for (CommandProduct cp : command.getCommandProducts()
         ) {
             var found = productRepository.findById(cp.getProduct().getId()).orElseThrow(() -> new Exception("Product not found !"));
@@ -42,6 +43,7 @@ public class CommandService implements ICommand {
             cp.setCommand(command);
             commandProductList.add(cp);
             productList.add(found);
+            totalPrice+=cp.getQuantity()* found.getPrice();
         }
         productRepository.saveAllAndFlush(productList);
         command.setCreatedAt(LocalDateTime.now());
@@ -52,6 +54,7 @@ public class CommandService implements ICommand {
         }
         //command.setClient(userRepository.findByEmail(user.getUsername()).orElseThrow(() -> new Exception("User not found !")));
         command.setClient(user);
+        command.setTotalPrice(totalPrice);
         commandRepository.saveAndFlush(command);
         commandProductRepository.saveAllAndFlush(commandProductList);
         return "true";

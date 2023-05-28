@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="flex flex-wrap">
+        <div class="w-4/12 flex-1">
+            <app-dashboard></app-dashboard>
+        </div>
+        <div class="w-8/12">
+            <!--<div class="relative overflow-scroll mt-2 table-auto" style="height: 400px;scroll-behavior: smooth;">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-auto overflow-scroll">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Nom
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Prenom
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Numéro telephone
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Actions
+              </th>
+  
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container ></ng-container>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" *ngFor="let item of clients">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                   {{item.nom}}
+                </th>
+                <td class="px-6 py-4">
+                    {{item.prenom}}
+                </td>
+                <td class="px-6 py-4">
+                    {{item.email}}
+                </td>
+                <td class="px-6 py-4">
+                    {{item.numeroTelephone}}
+                </td>
+                <td class="px-6 py-4">
+                  <button class="btn-update">
+                    Update
+                  </button>
+                  <button class="btn-delete">
+                    Delete
+                  </button>
+              </td>
+  
+            </tr>
+  
+        </tbody>
+    </table>
+  </div>
+  <button type="submit"  class="add-btn mt-3">
+    +
+  </button>
+      </div>
+  !-->
+            <div class="relative overflow-scroll mt-2 table-auto" style="height: 400px; scroll-behavior: smooth">
+                <h1 class="text-blue-600 text-center h-1 mb-16 text-4xl" routerLink="/manage_commands">Commands menu
+                </h1>
+                <a class="add-green-btn  mt-3" routerLink="/manage_payed_and_delivery_commands">Payed and delivred</a>
+                <a class="add-orange-btn  mt-3" routerLink="/manage_payed_and_waiting_for_delivery_commands">Payed and
+                    waiting for delivery</a>
+                <a class="add-red-btn  mt-3" routerLink="/manage_waiting_for_payment_commands">Waiting for payment</a>
+            </div>
+        </div>
+    </div>
+</div>

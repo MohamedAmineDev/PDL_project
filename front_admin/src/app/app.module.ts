@@ -18,6 +18,10 @@ import { ProductsComponent } from './products/products.component';
 import { AddProductComponent } from './add-product/add-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { UsersComponent } from './users/users.component';
+import { CommandComponent } from './command/command.component';
+import { CommandsThatArePayedAndDeliveredComponent } from './commands-that-are-payed-and-delivered/commands-that-are-payed-and-delivered.component';
+import { CommandsThatArePayedAndWaitingForDeliveryComponent } from './commands-that-are-payed-and-waiting-for-delivery/commands-that-are-payed-and-waiting-for-delivery.component';
+import { CommandsThatAreWaitingForPaymentComponent } from './commands-that-are-waiting-for-payment/commands-that-are-waiting-for-payment.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { UsersComponent } from './users/users.component';
     ProductsComponent,
     AddProductComponent,
     UpdateProductComponent,
-    UsersComponent
+    UsersComponent,
+    CommandComponent,
+    CommandsThatArePayedAndDeliveredComponent,
+    CommandsThatArePayedAndWaitingForDeliveryComponent,
+    CommandsThatAreWaitingForPaymentComponent
   ],
   imports: [
     BrowserModule,
