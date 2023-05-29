@@ -65,40 +65,52 @@
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">Id</th>
-                            <th scope="col" class="px-6 py-3">Created At</th>
+                            <th scope="col" class="px-6 py-3">Product Name</th>
+                            <th scope="col" class="px-6 py-3">Quantity</th>
+                            <th scope="col" class="px-6 py-3">Price</th>
                             <th scope="col" class="px-6 py-3">Total Price</th>
-                            <th scope="col" class="px-6 py-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <ng-container></ng-container>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                            *ngFor="let item of commands; let i = index">
+                            *ngFor="let item of details; let i = index">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ item.id }}
                             </th>
                             <td class="px-6 py-4">
-                                {{ item.createdAt }}
+                                {{ item.product.label }}
                             </td>
                             <td class="px-6 py-4">
-                                {{item.totalPrice}}
+                                {{item.quantity}}
                             </td>
                             <td class="px-6 py-4">
-                                <button class="btn-see-details" (click)="startUpdating(i)">
-                                    <abbr title="See details">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                                        </svg>
-                                    </abbr>
-                                </button>
+                                {{item.product.price}}
                             </td>
+                            <td></td>
                             <!---->
 
                             <!---->
                         </tr>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                
+                            </th>
+                            <td class="px-6 py-4">
+                                
+                            </td>
+                            <td class="px-6 py-4">
+                                
+                            </td>
+                            <td class="px-6 py-4">
+                                
+                            </td>
+                            <td>
+                                {{totalPrice}}
+                            </td>
+                        </tr>                      
                     </tbody>
                 </table>
             </div>

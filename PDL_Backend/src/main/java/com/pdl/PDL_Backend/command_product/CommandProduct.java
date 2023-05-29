@@ -25,7 +25,7 @@ public class CommandProduct implements Serializable {
     private Long quantity;
     @ManyToOne(fetch = FetchType.LAZY)
     private Command command;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Product product;
 
     public CommandProduct(@JsonProperty("id") UUID id, @JsonProperty("quantity") Long quantity) {

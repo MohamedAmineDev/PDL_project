@@ -36,4 +36,13 @@ export class CommandService {
     };
     return this.http.get<Array<Command>>(`${this.url}/admin/commands_that_are_payed_and_delivered`,head);
   }
+  confirmPaymentForACommand(command:Command){
+    const head = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.user.getToken(),
+      }),
+    };
+    return this.http.put(`${this.url}/admin/update/${command.id}`,true,head);
+  }
 }

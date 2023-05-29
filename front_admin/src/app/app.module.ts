@@ -22,6 +22,7 @@ import { CommandComponent } from './command/command.component';
 import { CommandsThatArePayedAndDeliveredComponent } from './commands-that-are-payed-and-delivered/commands-that-are-payed-and-delivered.component';
 import { CommandsThatArePayedAndWaitingForDeliveryComponent } from './commands-that-are-payed-and-waiting-for-delivery/commands-that-are-payed-and-waiting-for-delivery.component';
 import { CommandsThatAreWaitingForPaymentComponent } from './commands-that-are-waiting-for-payment/commands-that-are-waiting-for-payment.component';
+import { CommandDetailsComponent } from './command-details/command-details.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CommandsThatAreWaitingForPaymentComponent } from './commands-that-are-w
     CommandComponent,
     CommandsThatArePayedAndDeliveredComponent,
     CommandsThatArePayedAndWaitingForDeliveryComponent,
-    CommandsThatAreWaitingForPaymentComponent
+    CommandsThatAreWaitingForPaymentComponent,
+    CommandDetailsComponent
   ],
   imports: [
     BrowserModule,

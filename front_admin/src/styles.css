@@ -139,3 +139,6 @@
 .btn-delete{
   @apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2;
 }
+.btn-see-details{
+  @apply bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2;
+}
