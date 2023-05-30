@@ -1,18 +1,18 @@
 <div class="my-navbar-larger-screens">
     <div class="">
-        <button class="nav-link"><span class="mr-1"><i class="fa-solid fa-earth-africa"></i></span>Supprette Ali </button>
+        <button class="nav-link"><span class="mr-1"><i class="fa-solid fa-earth-africa"></i></span>Ali's Mini-Market </button>
     </div>
     <ng-container *ngIf="loggedIn==true">
         <div class="">
             <button class="nav-link"><span class="mr-1"><i class="fa-solid fa-user"></i></span> {{user.lastName}} {{user.firstName}}</button>
             <button class="nav-link" (click)="logout()"><span class="mr-1"><i
-                        class="fa-solid fa-arrow-right-from-bracket"></i></span>Se deconnecter</button>
+                        class="fa-solid fa-arrow-right-from-bracket"></i></span>Logout</button>
         </div>
     </ng-container>
     <ng-container *ngIf="loggedIn==false">
         <div class="mt-1">
             <a routerLink="/login" class="nav-link "><span class="mr-1"><i
-                        class="fa-solid fa-arrow-right-to-bracket"></i></span>Se connecter</a>
+                        class="fa-solid fa-arrow-right-to-bracket"></i></span>Login</a>
         </div>
   
     </ng-container>

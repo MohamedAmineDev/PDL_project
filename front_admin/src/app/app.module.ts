@@ -26,6 +26,8 @@ import { CommandDetailsComponent } from './command-details/command-details.compo
 import { SuppliesComponent } from './supplies/supplies.component';
 import { AddSupplyComponent } from './add-supply/add-supply.component';
 import { SupplyDetailsComponent } from './supply-details/supply-details.component';
+import { AuthGuard } from './auth/auth.guard';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,7 @@ import { SupplyDetailsComponent } from './supply-details/supply-details.componen
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AccountService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

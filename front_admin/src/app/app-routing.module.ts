@@ -12,21 +12,22 @@ import { CommandsThatArePayedAndDeliveredComponent } from './commands-that-are-p
 import { CommandDetailsComponent } from './command-details/command-details.component';
 import { SuppliesComponent } from './supplies/supplies.component';
 import { SupplyDetailsComponent } from './supply-details/supply-details.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'home', component: AccueilComponent },
-  { path: 'manage_categories', component: CategoryComponent },
-  { path: 'manage_products', component: ProductsComponent },
-  { path: 'manage_users', component: UsersComponent },
-  { path: 'manage_commands', component: CommandComponent },
-  { path: 'manage_waiting_for_payment_commands', component: CommandsThatAreWaitingForPaymentComponent },
-  { path: 'manage_payed_and_waiting_for_delivery_commands', component: CommandsThatArePayedAndWaitingForDeliveryComponent },
+  { path: 'home', component: AccueilComponent, canActivate: [AuthGuard] },
+  { path: 'manage_categories', component: CategoryComponent, canActivate: [AuthGuard] },
+  { path: 'manage_products', component: ProductsComponent, canActivate: [AuthGuard] },
+  { path: 'manage_users', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: 'manage_commands', component: CommandComponent, canActivate: [AuthGuard] },
+  { path: 'manage_waiting_for_payment_commands', component: CommandsThatAreWaitingForPaymentComponent, canActivate: [AuthGuard] },
+  { path: 'manage_payed_and_waiting_for_delivery_commands', component: CommandsThatArePayedAndWaitingForDeliveryComponent, canActivate: [AuthGuard] },
   { path: 'manage_payed_and_delivery_commands', component: CommandsThatArePayedAndDeliveredComponent },
-  { path: 'command_details/:id', component: CommandDetailsComponent },
-  { path: 'manage_supplies', component: SuppliesComponent },
-  { path: 'supply_details/:id', component: SupplyDetailsComponent }
+  { path: 'command_details/:id', component: CommandDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'manage_supplies', component: SuppliesComponent, canActivate: [AuthGuard] },
+  { path: 'supply_details/:id', component: SupplyDetailsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
