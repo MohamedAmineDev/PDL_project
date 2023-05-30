@@ -22,7 +22,7 @@ public class SupplyService implements ISupply {
     @Override
     public List<Supply> getAll() {
         return supplyRepository.findAll().stream()
-                .map(supply -> new Supply(supply.getId(), supply.getInterventionDate()))
+                .map(supply -> new Supply(supply.getId(), supply.getInterventionDate(),supply.getTotalPrice()))
                 .toList();
     }
 
@@ -30,16 +30,19 @@ public class SupplyService implements ISupply {
     public String add(Supply supply) throws Exception {
         List<Product> productList = new ArrayList<>();
         List<SupplyProduct> supplyProductList = new ArrayList<>();
+        double totalPrice=0;
         for (SupplyProduct sp : supply.getSupplyProductList()
         ) {
             Product p = productRepository.findById(sp.getProduct().getId()).orElseThrow(() -> new Exception("Product not found !"));
             p.setQuantity(p.getQuantity() + sp.getQuantity());
+            totalPrice+=sp.getQuantity()*p.getPrice();
             productList.add(p);
             sp.setSupply(supply);
             supplyProductList.add(sp);
         }
         productRepository.saveAllAndFlush(productList);
         supply.setInterventionDate(LocalDateTime.now());
+        supply.setTotalPrice(totalPrice);
         supplyRepository.saveAndFlush(supply);
         supplyProductRepository.saveAllAndFlush(supplyProductList);
         return "true";

@@ -22,6 +22,6 @@ public class SupplyProduct {
     private Long quantity;
     @ManyToOne(fetch = FetchType.LAZY)
     private Supply supply;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Product product;
 }

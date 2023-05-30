@@ -23,6 +23,9 @@ import { CommandsThatArePayedAndDeliveredComponent } from './commands-that-are-p
 import { CommandsThatArePayedAndWaitingForDeliveryComponent } from './commands-that-are-payed-and-waiting-for-delivery/commands-that-are-payed-and-waiting-for-delivery.component';
 import { CommandsThatAreWaitingForPaymentComponent } from './commands-that-are-waiting-for-payment/commands-that-are-waiting-for-payment.component';
 import { CommandDetailsComponent } from './command-details/command-details.component';
+import { SuppliesComponent } from './supplies/supplies.component';
+import { AddSupplyComponent } from './add-supply/add-supply.component';
+import { SupplyDetailsComponent } from './supply-details/supply-details.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { CommandDetailsComponent } from './command-details/command-details.compo
     CommandsThatArePayedAndDeliveredComponent,
     CommandsThatArePayedAndWaitingForDeliveryComponent,
     CommandsThatAreWaitingForPaymentComponent,
-    CommandDetailsComponent
+    CommandDetailsComponent,
+    SuppliesComponent,
+    AddSupplyComponent,
+    SupplyDetailsComponent
   ],
   imports: [
     BrowserModule,
