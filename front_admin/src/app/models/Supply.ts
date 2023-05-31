@@ -10,3 +10,9 @@ export interface SupplyProduct{
     supply:any;
     product:any;
 }
+export interface CommandProduct{
+    id:any;
+    quantity:number;
+    command:any;
+    product:any;
+}

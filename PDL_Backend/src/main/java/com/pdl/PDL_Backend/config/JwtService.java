@@ -34,10 +34,11 @@ public class JwtService {
 
     private HashMap<String, Object> generateMyClaims(User user) {
         HashMap<String, Object> claims = new HashMap<>();
-        claims.put("nom", user.getNom());
-        claims.put("prenom", user.getPrenom());
+        claims.put("lastName", user.getNom());
+        claims.put("firstName", user.getPrenom());
         claims.put("role", user.getRole());
         claims.put("email", user.getEmail());
+        claims.put("identity",user.getId());
         return claims;
     }
 

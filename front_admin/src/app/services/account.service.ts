@@ -28,9 +28,10 @@ export class AccountService {
       let decoder = new JwtHelperService();
       let decodedToken = decoder.decodeToken(token);
       currentUser.email = decodedToken.sub;
-      currentUser.firstName = decodedToken.prenom;
-      currentUser.lastName = decodedToken.nom;
+      currentUser.firstName = decodedToken.firstName;
+      currentUser.lastName = decodedToken.lastName;
       currentUser.role = decodedToken.role;
+      currentUser.identity=decodedToken.identity;
     }
     return currentUser;
     //let user=decoder.getAuthScheme();

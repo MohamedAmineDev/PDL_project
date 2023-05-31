@@ -7,6 +7,7 @@ export interface CurrentUser{
     lastName:string;
     email:string;
     role:string;
+    identity:any;
 }
 export interface Client{
     id:any;
