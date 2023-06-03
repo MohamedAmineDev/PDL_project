@@ -26,10 +26,12 @@ public class Supply implements Serializable {
     private LocalDateTime interventionDate;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "supply")
     private List<SupplyProduct> supplyProductList;
+    private Double totalPrice;
 
-    public Supply(@JsonProperty("id") UUID id, @JsonProperty("interventionDate") LocalDateTime interventionDate) {
+    public Supply(@JsonProperty("id") UUID id, @JsonProperty("interventionDate") LocalDateTime interventionDate,Double totalPrice) {
         this.id = id;
         this.interventionDate = interventionDate;
         supplyProductList = new ArrayList<>();
+        this.totalPrice=totalPrice;
     }
 }

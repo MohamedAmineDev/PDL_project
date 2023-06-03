@@ -27,7 +27,7 @@ public class CommandService implements ICommand {
         List<Command> commands = commandRepository.findAll();
         return commands
                 .stream()
-                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole(),c.getClient().isUnlocked())))
                 .toList();
     }
 
@@ -35,6 +35,7 @@ public class CommandService implements ICommand {
     public String add(Command command, boolean payed, User user) throws Exception {
         List<Product> productList = new ArrayList<>();
         List<CommandProduct> commandProductList = new ArrayList<>();
+        double totalPrice=0;
         for (CommandProduct cp : command.getCommandProducts()
         ) {
             var found = productRepository.findById(cp.getProduct().getId()).orElseThrow(() -> new Exception("Product not found !"));
@@ -42,6 +43,7 @@ public class CommandService implements ICommand {
             cp.setCommand(command);
             commandProductList.add(cp);
             productList.add(found);
+            totalPrice+=cp.getQuantity()* found.getPrice();
         }
         productRepository.saveAllAndFlush(productList);
         command.setCreatedAt(LocalDateTime.now());
@@ -52,6 +54,7 @@ public class CommandService implements ICommand {
         }
         //command.setClient(userRepository.findByEmail(user.getUsername()).orElseThrow(() -> new Exception("User not found !")));
         command.setClient(user);
+        command.setTotalPrice(totalPrice);
         commandRepository.saveAndFlush(command);
         commandProductRepository.saveAllAndFlush(commandProductList);
         return "true";
@@ -79,7 +82,7 @@ public class CommandService implements ICommand {
     public List<Command> getAllCommandsThatAreWaitingForPayment() throws Exception {
         return commandRepository.findByType(CommandType.WaitingForPayment)
                 .stream()
-                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole(),c.getClient().isUnlocked())))
                 .toList();
     }
 
@@ -87,7 +90,7 @@ public class CommandService implements ICommand {
     public List<Command> getAllCommandsThatArePayedWaitingForDelivery() throws Exception {
         return commandRepository.findByType(CommandType.PayedButWaitingForDelivery)
                 .stream()
-                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole(),c.getClient().isUnlocked())))
                 .toList();
     }
 
@@ -95,7 +98,7 @@ public class CommandService implements ICommand {
     public List<Command> getAllCommandsThatArePayedAndDelivered() throws Exception {
         return commandRepository.findByType(CommandType.PayedAndDelivered)
                 .stream()
-                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole(),c.getClient().isUnlocked())))
                 .toList();
     }
 
@@ -103,7 +106,7 @@ public class CommandService implements ICommand {
     public List<Command> getAllCommandsOfAUser(User user) throws Exception {
         return commandRepository.findByUserEmail(user.getUsername())
                 .stream()
-                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole())))
+                .map((c) -> new Command(c.getId(), c.getCreatedAt(), c.getTotalPrice(), c.getType(), new User(c.getClient().getId(), c.getClient().getNom(), c.getClient().getPrenom(), c.getClient().getEmail(), c.getClient().getRole(),c.getClient().isUnlocked())))
                 .toList();
     }
 }

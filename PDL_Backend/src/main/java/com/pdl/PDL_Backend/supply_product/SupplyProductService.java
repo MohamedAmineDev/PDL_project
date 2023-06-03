@@ -16,7 +16,7 @@ public class SupplyProductService implements ISupplyProduct {
     @Override
     public List<SupplyProduct> getDetails(UUID supplyId) {
         return supplyProductRepository.findBySupplyId(supplyId).stream()
-                .map(supplyProduct -> new SupplyProduct(supplyProduct.getId(), supplyProduct.getQuantity(), new Supply(supplyProduct.getSupply().getId(), supplyProduct.getSupply().getInterventionDate()), new Product(supplyProduct.getProduct().getId(), supplyProduct.getProduct().getLabel(), supplyProduct.getProduct().getQuantity(), supplyProduct.getProduct().getPrice())))
+                .map(supplyProduct -> new SupplyProduct(supplyProduct.getId(), supplyProduct.getQuantity(), new Supply(supplyProduct.getSupply().getId(), supplyProduct.getSupply().getInterventionDate(),supplyProduct.getSupply().getTotalPrice()), new Product(supplyProduct.getProduct().getId(), supplyProduct.getProduct().getLabel(), supplyProduct.getProduct().getQuantity(), supplyProduct.getProduct().getPrice(),supplyProduct.getProduct().getImageLink())))
                 .toList();
     }
 }

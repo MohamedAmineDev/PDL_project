@@ -82,4 +82,24 @@ public class UserController implements IUserController {
             return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping(path = "/admin/unlock_user")
+    public boolean unlockUser(@RequestBody User user) throws Exception {
+        try {
+            return userService.unlockUser(user);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
+
+    @PutMapping(path = "/admin/lock_user")
+    public boolean lockUser(@RequestBody User user) throws Exception {
+        try {
+            return userService.lockUser(user);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -25,6 +25,7 @@ public class UserService implements UserCrud {
         }
         user.setRole("ROLE_CLIENT");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setUnlocked(true);
         return userRepository.save(user) != null;
     }
 
@@ -37,7 +38,7 @@ public class UserService implements UserCrud {
                 new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
         );
         var foundUser = userRepository.findByEmail(user.getEmail()).orElseThrow();
-        return jwtService.generateToken(user);
+        return jwtService.generateToken(foundUser);
     }
 
     @Override
@@ -47,12 +48,13 @@ public class UserService implements UserCrud {
         }
         user.setRole("ROLE_ADMIN");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setUnlocked(true);
         return userRepository.save(user) != null;
     }
 
     @Override
     public List<User> loadAllClients() throws Exception {
-        return userRepository.getAllUserGroupedByRole("ROLE_CLIENT").stream().map(u -> new User(u.getId(), u.getNom(), u.getPrenom(), u.getUsername(), null, u.getRole(), null)).toList();
+        return userRepository.getAllUserGroupedByRole("ROLE_CLIENT").stream().map(u -> new User(u.getId(), u.getNom(), u.getPrenom(), u.getUsername(), null, u.getRole(), null, u.isUnlocked())).toList();
     }
 
     @Override
@@ -69,5 +71,24 @@ public class UserService implements UserCrud {
             user1.setPrenom(user.getPrenom());
         }
         return userRepository.save(user1) != null;
+    }
+
+    public boolean unlockUser(User user) throws Exception {
+        var found = userRepository.findByEmail(user.getEmail()).orElse(null);
+        if (found == null) {
+            throw new Exception("User was not found ");
+        }
+        found.setUnlocked(true);
+        userRepository.saveAndFlush(found);
+        return true;
+    }
+    public boolean lockUser(User user) throws Exception {
+        var found = userRepository.findByEmail(user.getEmail()).orElse(null);
+        if (found == null) {
+            throw new Exception("User was not found ");
+        }
+        found.setUnlocked(false);
+        userRepository.saveAndFlush(found);
+        return true;
     }
 }

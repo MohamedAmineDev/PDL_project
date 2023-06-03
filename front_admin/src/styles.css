@@ -1,0 +1,147 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/*** my global css classes ***/
+.nav-link{
+    @apply font-bold py-1 px-3 text-slate-200 rounded-lg bg-slate-900 hover:bg-blue-100 dark:hover:bg-blue-700;
+}
+.nav-link-small-screens{
+    @apply text-gray-700 block px-4 py-2 text-sm;
+}
+.nav-links-container{
+    @apply absolute mt-6 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none;
+}
+.my-navbar-larger-screens{
+    @apply  w-full hidden md:flex md:justify-between  md:space-x-4 md:bg-slate-900 md:py-3 ;
+}
+.my-navbar-small-screens{
+    @apply flex justify-start md:hidden space-x-4 bg-slate-900 py-3 mb-24 ;
+}
+.cards{
+    @apply grid grid-cols-1 md:grid-cols-3;
+}
+.card{
+    @apply bg-slate-50 p-6 m-3 rounded text-center shadow-md overflow-hidden;
+}
+.card-image{
+    @apply w-full  object-cover border-0;
+}
+.card-description{
+    @apply text-black font-bold;
+}
+.display-btn{
+    @apply bg-blue-600 rounded-full p-2 text-white border border-blue-600 border-solid hover:bg-white hover:text-blue-600;
+}
+.forms-global-container{
+    @apply min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8;
+}
+.forms-container{
+    @apply max-w-md w-full space-y-8;
+}
+.form-title{
+    @apply mt-6 text-center text-3xl font-extrabold text-gray-900 ;
+}
+.simple-form{
+    @apply mt-8 space-y-6;
+}
+.input-groups{
+    @apply rounded-md shadow-sm -space-y-px;
+}
+.label-form{
+    @apply  underline text-gray-800 font-bold;
+}
+.label-form-modal{
+  @apply   text-white font-bold;
+}
+.input-form{
+    @apply appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm my-3;
+}
+.input-error{
+    @apply bg-red-600 text-red-100 py-3 px-3 font-bold;
+}
+.input-error-modal{
+  @apply bg-red-600 text-red-100  font-bold;
+  font-size: small;
+}
+.submit-form{
+    @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-700 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+.add-element-form{
+  @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+.add-btn{
+  @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+.add-red-btn{
+  @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+.add-orange-btn{
+  @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-700 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+.add-green-btn{
+  @apply relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-700 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+}
+.menu-blue-btn{
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full;
+}
+.menu-orange-btn{
+  @apply bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full;
+}
+.menu-green-btn{
+  @apply bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full;
+}
+.modal-golobal-container{
+    @apply  z-10 fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity;
+}
+.modal-container{
+    @apply flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0;
+}
+.game{
+    @apply flex flex-col justify-center items-center md:mt-6;
+}
+.main{
+    @apply mt-0 flex flex-col items-center absolute bg-opacity-90;
+   /* background-image: url("https://i.pinimg.com/originals/63/bf/0f/63bf0f5195646e5cd8ada16875de4b4b.png");*/
+   background-image: url("https://wallpaperaccess.com/full/1691713.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+    scroll-behavior: smooth;
+}
+.footer{
+    @apply  w-full  flex justify-center   bg-slate-900 p-3 md:fixed bottom-0 mt-3;
+}
+.dashboard{
+  @apply px-3 py-4 overflow-y-auto rounded bg-gray-50 bg-slate-900;
+}
+.dashboard-container{
+  @apply w-64 mt-1;
+}
+.dashboard-item-container{
+  @apply space-y-2;
+}
+.dashboard-item{
+   @apply flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-blue-100 dark:hover:bg-blue-700;
+}
+.dashboard-item-icon{
+  @apply flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white ;
+}
+.list-element{
+  @apply space-y-2 mt-9 mb-9;
+}
+.body{
+  @apply bg-slate-300;
+}
+.btn-update{
+  @apply bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded ml-2;
+}
+.btn-delete{
+  @apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2;
+}
+.btn-see-details{
+  @apply bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2;
+}
+.btn-basket{
+  @apply bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded ml-2;
+}
