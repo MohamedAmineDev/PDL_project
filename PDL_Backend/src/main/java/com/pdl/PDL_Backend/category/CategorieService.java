@@ -13,40 +13,60 @@ public class CategorieService implements ICategorie {
     private final CategorieRepository categorieRepository;
 
     @Override
-    public List<Category> getAll() throws Exception {
-        return categorieRepository.findAll().stream().map(category -> new Category(category.getId(), category.getLabel(), category.getImageLink())).toList();
-    }
-
-    @Override
-    public String add(Category category) throws Exception {
-        if (category == null) {
-            throw new Exception("Category is null !");
+    public List<Category> getAll() {
+        try {
+            return categorieRepository.findAll().stream().map(category -> new Category(category.getId(), category.getLabel(), category.getImageLink())).toList();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return new ArrayList<>();
         }
-        categorieRepository.saveAndFlush(category);
-        return "true";
     }
 
     @Override
-    public String update(UUID id, Category category) throws Exception {
-        Category found = categorieRepository.findById(id).orElseThrow(() -> new Exception("Category not found !"));
-        if (category.getLabel() != null) {
-            if (!category.getLabel().isEmpty() && !category.getLabel().equals(found.getLabel())) {
-                found.setLabel(category.getLabel());
+    public String add(Category category) {
+        try {
+            if (category == null) {
+                throw new Exception("Category is null !");
             }
+            categorieRepository.saveAndFlush(category);
+            return "true";
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return "false";
         }
-        if (category.getImageLink() != null) {
-            if (!category.getImageLink().isEmpty() && !category.getImageLink().equals(found.getImageLink())) {
-                found.setImageLink(category.getImageLink());
-            }
-        }
-        categorieRepository.saveAndFlush(found);
-        return "true";
     }
 
     @Override
-    public String delete(UUID id) throws Exception {
-        Category category = categorieRepository.findById(id).orElseThrow(() -> new Exception("The category does not exist !"));
-        categorieRepository.delete(category);
-        return "true";
+    public String update(UUID id, Category category) {
+        try {
+            Category found = categorieRepository.findById(id).orElseThrow(() -> new Exception("Category not found !"));
+            if (category.getLabel() != null) {
+                if (!category.getLabel().isEmpty() && !category.getLabel().equals(found.getLabel())) {
+                    found.setLabel(category.getLabel());
+                }
+            }
+            if (category.getImageLink() != null) {
+                if (!category.getImageLink().isEmpty() && !category.getImageLink().equals(found.getImageLink())) {
+                    found.setImageLink(category.getImageLink());
+                }
+            }
+            categorieRepository.saveAndFlush(found);
+            return "true";
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return "false";
+        }
+    }
+
+    @Override
+    public String delete(UUID id) {
+        try {
+            Category category = categorieRepository.findById(id).orElseThrow(() -> new Exception("The category does not exist !"));
+            categorieRepository.delete(category);
+            return "true";
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return "false";
+        }
     }
 }

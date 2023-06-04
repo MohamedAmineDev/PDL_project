@@ -31,7 +31,7 @@ public class CategoryController implements ICategorie {
             return service.add(category);
         } catch (Exception exception) {
             exception.printStackTrace();
-            return exception.getMessage();
+            return "false";
         }
     }
 
@@ -41,7 +41,8 @@ public class CategoryController implements ICategorie {
         try {
             return service.update(id, category);
         } catch (Exception exception) {
-            return exception.getMessage();
+            exception.printStackTrace();
+            return "false";
         }
 
     }
@@ -52,7 +53,8 @@ public class CategoryController implements ICategorie {
         try {
             return service.delete(id);
         } catch (Exception exception) {
-            return exception.getMessage();
+            exception.printStackTrace();
+            return "false";
         }
 
     }
