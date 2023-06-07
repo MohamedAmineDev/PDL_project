@@ -16,7 +16,14 @@ startUpdating(_t22: number) {
   this.router.navigate(["/command_details/"+this.commands[_t22].id]);
 }
 prepareBeforeDelete(_t22: number) {
-throw new Error('Method not implemented.');
+  this.commandService.confirmThatTheCommandWasNotPayed(this.commands[_t22]).subscribe(
+    (data)=>{
+      console.log(data);
+      window.location.href="/manage_payed_and_delivery_commands"
+    },(e)=>{
+      console.log(e);
+    }
+  )
 }
 
   constructor(private commandService: CommandService,private commandDetailsService:CommandDetailsService,private router: Router) { 

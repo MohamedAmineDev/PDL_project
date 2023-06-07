@@ -39,6 +39,9 @@ public class CommandService implements ICommand {
         for (CommandProduct cp : command.getCommandProducts()
         ) {
             var found = productRepository.findById(cp.getProduct().getId()).orElseThrow(() -> new Exception("Product not found !"));
+            if (found.getQuantity() < cp.getQuantity() || found.getQuantity() < 1) {
+                throw new Exception("We dont have enough of the product " + found.getId());
+            }
             found.setQuantity(found.getQuantity() - cp.getQuantity());
             cp.setCommand(command);
             commandProductList.add(cp);
