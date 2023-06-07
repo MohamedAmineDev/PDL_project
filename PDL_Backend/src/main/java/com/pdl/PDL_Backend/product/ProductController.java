@@ -24,6 +24,11 @@ public class ProductController implements IProduct {
         }
     }
 
+    @GetMapping(path = "/available_products")
+    public List<Product> getAllAvailableProduct() {
+        return service.getAllAvailableProduct();
+    }
+
     @PostMapping(path = "/admin/addition")
     @Override
     public String add(@RequestBody Product product) {

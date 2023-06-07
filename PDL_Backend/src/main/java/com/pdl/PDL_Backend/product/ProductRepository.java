@@ -11,4 +11,7 @@ import java.util.UUID;
 public interface ProductRepository extends JpaRepository<Product, UUID> {
     @Query("select p from Product p where p.category.id=?1")
     List<Product> findByCategoryId(UUID id);
+
+    @Query("select p from Product p where p.quantity > ?1")
+    List<Product> findAllAvailableProduct(int quantity);
 }

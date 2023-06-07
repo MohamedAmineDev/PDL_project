@@ -20,6 +20,10 @@ public class ProductService implements IProduct {
         return productRepository.findAll().stream().map(product -> new Product(product.getId(), product.getLabel(), product.getQuantity(), product.getPrice(), product.getImageLink())).toList();
     }
 
+    public List<Product> getAllAvailableProduct() {
+        return productRepository.findAllAvailableProduct(0);
+    }
+
     @Override
     public String add(Product product) throws Exception {
         if (product == null) {
@@ -46,7 +50,7 @@ public class ProductService implements IProduct {
         if (product.getPrice() > 1 && !product.getPrice().equals(found.getPrice())) {
             found.setPrice(product.getPrice());
         }
-        if (product.getImageLink() != null || product.getImageLink()!="") {
+        if (product.getImageLink() != null || product.getImageLink() != "") {
             found.setImageLink(product.getImageLink());
         }
         productRepository.saveAndFlush(found);
