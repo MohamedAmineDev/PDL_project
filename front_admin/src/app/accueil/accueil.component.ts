@@ -4,6 +4,7 @@ import { ProductService } from '../services/product.service';
 import { SupplyService } from '../services/supply.service';
 import { CommandService } from '../services/command.service';
 import { UserService } from '../services/user.service';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-accueil',
@@ -15,9 +16,10 @@ export class AccueilComponent implements OnInit {
   nbS:number=0;
   nbCl:number=0;
   nbC:number=0;
+  nbCategory:number=0;
   btnInfo: string = "See more";
 
-  constructor(private productService: ProductService, private supplyService: SupplyService, private commandService: CommandService, private clientService: UserService) { 
+  constructor(private productService: ProductService, private supplyService: SupplyService, private commandService: CommandService, private clientService: UserService,private categoryService:CategoryService) { 
     productService.getAllProducts().subscribe(
       (data)=>{
         this.nbP=data.length;
@@ -30,7 +32,7 @@ export class AccueilComponent implements OnInit {
       },
       (e)=>{}
     );
-    commandService.getAllCommandsThatAreWaitingForPayment().subscribe(
+    commandService.getAllCommands().subscribe(
       (data)=>{
         this.nbC=data.length;
       },
@@ -41,6 +43,14 @@ export class AccueilComponent implements OnInit {
         this.nbCl=data.length;
       },
       (e)=>{}
+    );
+    categoryService.getAllCategories().subscribe(
+      (data)=>{
+        this.nbCategory=data.length;
+      },
+      (e)=>{
+        console.log(e);
+      }
     );
   }
 

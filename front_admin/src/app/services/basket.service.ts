@@ -62,4 +62,15 @@ export class BasketService {
   resetBasket() {
     sessionStorage.removeItem(this.sessionName);
   }
+  updateBasket(basket: any){
+    let i=0;
+    this.resetBasket();
+    while(i<basket.length){
+      this.putInTheBasket(basket[i].product,basket[i].quantity);
+      i++;
+    }
+    if(i==0){
+      sessionStorage.setItem(this.sessionName,"");
+    }
+  }
 }

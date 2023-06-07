@@ -45,4 +45,13 @@ export class CommandService {
     };
     return this.http.put(`${this.url}/admin/update/${command.id}`,true,head);
   }
+  getAllCommands(){
+    const head = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.user.getToken(),
+      }),
+    };
+    return this.http.get<Array<Command>>(`${this.url}/commands`,head);
+  }
 }

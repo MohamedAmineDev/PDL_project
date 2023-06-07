@@ -54,8 +54,9 @@ export class SupplyService {
     }
   }
   getBasket() {
-    let currentBasket: string = sessionStorage.getItem(this.sessionName) + "";
-    let items = currentBasket.split("||");
+    let currentBasket = sessionStorage.getItem(this.sessionName) ||null;
+    if(currentBasket!=null){
+      let items = currentBasket.split("||");
     let i = 0;
     let basket: Array<SupplyProduct> = [];
     while (i < items.length) {
@@ -67,6 +68,8 @@ export class SupplyService {
       i++;
     }
     return basket;
+    }
+    return null;
   }
   resetBasket() {
     sessionStorage.removeItem(this.sessionName);
@@ -86,5 +89,14 @@ export class SupplyService {
   getTotalPrice() {
     let totalPrice: any = sessionStorage.getItem("t_p");
     return totalPrice;
+  }
+  updateBasket(basket: any){
+    let i=0;
+    this.resetBasket();
+    while(i<basket.length){
+      this.putInTheBasket(basket[i].product,basket[i].quantity);
+      i++;
+    }
+    
   }
 }

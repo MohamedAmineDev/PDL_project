@@ -67,6 +67,7 @@
                             <th scope="col" class="px-6 py-3">Id</th>
                             <th scope="col" class="px-6 py-3">Created At</th>
                             <th scope="col" class="px-6 py-3">Total Price</th>
+                            <th scope="col" class="px-6 py-3">Client</th>
                             <th scope="col" class="px-6 py-3">Actions</th>
                         </tr>
                     </thead>
@@ -84,6 +85,9 @@
                             <td class="px-6 py-4">
                                 {{item.totalPrice}}
                             </td>
+                            <td class="px-6 py-4">
+                              {{item.client.nom}} {{item.client.prenom}}
+                          </td>
                             <td class="px-6 py-4">
                                 <button class="btn-delete" (click)="prepareBeforeDelete(i)"
                                     data-modal-target="popup-modal" data-modal-toggle="popup-modal">

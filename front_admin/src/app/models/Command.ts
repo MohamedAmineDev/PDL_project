@@ -3,4 +3,5 @@ export interface Command{
     createdAt:any;
     totalPrice:number;
     type:any;
+    client:any;
 }

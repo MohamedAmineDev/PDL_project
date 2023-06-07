@@ -16,11 +16,11 @@ deleteFournisseur() {
 throw new Error('Method not implemented.');
 }
 addsupply() {
-  alert("mmmmmmmmmmm");
 this.supplyService.registerSupply().subscribe(
   (data)=>{
     console.log(data);
     this.supplyService.resetBasket();
+    window.location.href = "/manage_supplies";
   },
   (e)=>{
     console.log(e);
@@ -29,8 +29,6 @@ this.supplyService.registerSupply().subscribe(
 }
   updateBakset(_t24: number) {
     let wantedProduct = this.products[_t24];
-    alert("Hello !");
-
     let quantity: number = parseInt(prompt(`Put the quantity you want to supply for ${wantedProduct.label}`) + "");
     if (quantity > 0) {
       this.supplyService.putInTheBasket(wantedProduct, quantity);
@@ -43,8 +41,9 @@ this.supplyService.registerSupply().subscribe(
   startUpdating(_t28: number) {
     throw new Error('Method not implemented.');
   }
-  prepareBeforeDelete(arg0: any) {
-    throw new Error('Method not implemented.');
+  deleteFromBasket(arg0: any) {
+    this.basket.splice(arg0,1);
+    this.supplyService.updateBasket(this.basket);
   }
   showModal: boolean = true;
   @Input() products: Array<Product> = [];
